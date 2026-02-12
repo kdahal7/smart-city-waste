@@ -1,0 +1,31 @@
+databases:
+  - name: smart-waste-db
+    databaseName: smart_waste_db
+    user: smart_waste_user
+    plan: free
+    region: oregon
+    postgresMajorVersion: 15
+
+services:
+  - type: web
+    name: smart-waste-optimization
+    runtime: java
+    plan: free
+    region: oregon
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -Dserver.port=$PORT -jar target/waste-optimization-1.0.0.jar
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: smart-waste-db
+          property: connectionString
+      - key: DB_USERNAME
+        fromDatabase:
+          name: smart-waste-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: smart-waste-db
+          property: password
+      - key: JAVA_OPTS
+        value: -Xmx512m -Xms256m
