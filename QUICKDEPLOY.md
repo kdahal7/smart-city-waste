@@ -12,7 +12,7 @@ cd "C:\Users\kaush\Downloads\Infosys\Smart City Waste Optimization Dashboard"
 git init
 git add .
 git commit -m "Deploy Smart City Waste Dashboard"
-git remote add origin https://github.com/YOUR_USERNAME/smart-city-waste.git
+git remote add origin https://github.com/kdahal7/smart-city-waste.git
 git push -u origin main
 ```
 
@@ -38,9 +38,9 @@ git push -u origin main
 2. Connect your GitHub repo
 3. Settings:
    - Name: `smart-waste-optimization`
-   - Runtime: Java
-   - Build: `./mvnw clean package -DskipTests`
-   - Start: `java -Dserver.port=$PORT -jar target/waste-optimization-1.0.0.jar`
+   - Runtime: **Docker** (Render doesn't have Java option, use Docker)
+   - Branch: `main`
+   - Region: Oregon (same as database)
    - Plan: **Free**
 4. Environment Variables:
    - `DATABASE_URL` → Link to database
